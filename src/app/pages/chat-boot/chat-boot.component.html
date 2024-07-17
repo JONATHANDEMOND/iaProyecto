@@ -18,7 +18,9 @@
       <input [(ngModel)]="inputText" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
       <button type="submit" (click)="sendMessage()">Enviar</button>
       <input type="file" (change)="onFileSelected($event)" />
+      <button id="uploadButton">Upload</button>
     </div>
+    <p id="result"></p>
     <br>
     <button type="submit" [routerLink]="['/imagen']">Regresar</button>
     <br>

@@ -23,8 +23,8 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     user:any;
     text:any;
     name:any;
-title: any;
-
+    title: any;
+    file: any;
   
     constructor(private chatService: ChatServiceService) {}
   
@@ -40,17 +40,27 @@ title: any;
       }
     }
     onFileSelected(event: any) {
-      const file: File = event.target.files[0];
-      if (file) {
+      this.file= event.target.files[0];
+      if (this.file) {
         const reader = new FileReader();
         reader.onload = (e: any) => {
           this.messages.push({ urlImagen: e.target.result, user: true });
         };
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(this.file);
       }else{
           this.messages.push({ text: 'No se selecciono ningun archivo', user: true });
 
       }
       }
+
+
+      uploadFile(file:any){
+        
+
+      
+      }
+    
+
     }
-  
+
+    
