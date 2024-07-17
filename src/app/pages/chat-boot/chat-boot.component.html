@@ -1,26 +1,27 @@
+<mat-toolbar color="primary">
+  <span>Chatbot de la Tienda</span>
+</mat-toolbar>
+
 <div class="chat-container">
-  <mat-toolbar color="primary">
-    <span>{{ title }}</span>
- </mat-toolbar>
-
- <div *ngFor="let message of messages" [ngClass]="{'user-message': message.user, 'bot-message': !message.user}">
-  <span [innerHTML]="message.text"></span>
- </div>
-
-    
-      @for (item of messages; track item) {
-        <div [ngClass]="{'user-message': item.user, 'bot-message': !item.user}">
-          {{ item.text }}
-        </div>
-      }
+  <div class="chat-box">
+    <div *ngFor="let message of messages">
+      <div [ngClass]="{'user-message': message.user, 'bot-message': !message.user}">
+        <ng-container *ngIf="message.text">
+          {{ message.text }}
+        </ng-container>
+        <ng-container *ngIf="message.urlImagen">
+          <img [src]="message.urlImagen" alt="Imagen subida" />
+        </ng-container>
+      </div>
     </div>
-    <div class="input-container">
-      <input [(ngModel)]="inputText" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
-      <button type="submit" (click)="sendMessage()">Enviar</button>
-      <input type="file" (change)="onFileSelected($event)" />
-    </div>
-    <br>
-    <button type="submit" [routerLink]="['/imagen']">Regresar</button>
-    <br>
-    <br>
-  
+  </div>
+
+  <mat-form-field class="message-input">
+    <input matInput placeholder="Escribe un mensaje..." [(ngModel)]="inputText" (keyup.enter)="sendMessage()">
+  </mat-form-field>
+  <button mat-icon-button (click)="sendMessage()">
+    <mat-icon>send</mat-icon>
+  </button>
+
+  <input type="file" (change)="onFileSelected($event)">
+</div>
