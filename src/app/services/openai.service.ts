@@ -7,15 +7,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OpenaiService {
-  private apiUrl = 'https://api.openai.com/v1/completions';
-  private apiKey = 'sk-None-dbZEpWv7W1QbC0rwsE30T3BlbkFJOZPvYFT2JnjGLbYXLzSM';  // Reemplaza esto con tu clave API de OpenAI
+///  private apiUrl = 'https://api.openai.com/v1/completions';
+  //private apiKey = 'sk-None-dbZEpWv7W1QbC0rwsE30T3BlbkFJOZPvYFT2JnjGLbYXLzSM';  // Reemplaza esto con tu clave API de OpenAI
 
   constructor(private http: HttpClient) { }
 
   sendMessage(message: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.apiKey}`
+      //'Authorization': `Bearer ${this.apiKey}`
     });
 
     const body = {
@@ -23,6 +23,6 @@ export class OpenaiService {
       messages: [{ role: 'user', content: message }]
     };
 
-    return this.http.post(this.apiUrl, body, { headers });
+   // return this.http.post(this.apiUrl, body, { headers });
   }
 }
