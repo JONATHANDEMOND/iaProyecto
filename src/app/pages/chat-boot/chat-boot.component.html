@@ -1,0 +1,26 @@
+<div class="chat-container">
+  <mat-toolbar color="primary">
+    <span>{{ title }}</span>
+ </mat-toolbar>
+
+ <div *ngFor="let message of messages" [ngClass]="{'user-message': message.user, 'bot-message': !message.user}">
+  <span [innerHTML]="message.text"></span>
+ </div>
+
+    
+      @for (item of messages; track item) {
+        <div [ngClass]="{'user-message': item.user, 'bot-message': !item.user}">
+          {{ item.text }}
+        </div>
+      }
+    </div>
+    <div class="input-container">
+      <input [(ngModel)]="inputText" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
+      <button type="submit" (click)="sendMessage()">Enviar</button>
+      <input type="file" (change)="onFileSelected($event)" />
+    </div>
+    <br>
+    <button type="submit" [routerLink]="['/imagen']">Regresar</button>
+    <br>
+    <br>
+  

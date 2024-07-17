@@ -1,0 +1,20 @@
+{
+  "imagenes": [
+    {
+      "id": "1",
+      "nombre": "Samsung Galaxy S21",
+      "urlImagen": "https://catalogo.claro.com.ec/uploads/imgs/productos/samsung-galaxy-s21-ultra/negro/zoom/03-samsung-galaxy-s21-ultra-negro-back.png"
+    },
+    {
+      "id": "2",
+      "nombre": "AUDIFONOS",
+      "urlImagen": "https://maxitec.vteximg.com.br/arquivos/ids/191070-1000-1000/maxitec-sony-audifonos-inalambricos-wh-ch520-musica-sin-limites-wh-ch520bz-uc-1.jpg?v=638304420396430000"
+    },
+    {
+      "id": "7",
+      "nombre": "Pedro Picapiedra",
+      "urlImagen": "https://img.freepik.com/foto-gratis/closeup-foto-pajaro-espatula-sobre-fondo-natural-borroso_181624-6867.jpg?t=st=1720746736~exp=1720750336~hmac=4a7916110a501a514792e2a37d36af746bfde4ffe08fe7f77a78ace299e6791a&w=740"
+    }
+  ],
+  "chat": []
+}

@@ -1,0 +1,33 @@
+<!-- app.component.html -->
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Imagenes</th>
+        <th scope="col">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of imagen; track item) {
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.nombre}}</td>
+          <td>
+            <img src="{{item.urlImagen}}" alt="Imagen de {{item.nombre}}" height="200">
+          </td> 
+           
+          <td>
+            <button class="btn btn-danger" (click)="eliminar(item.id)">ELIMINAR</button>
+          </td> 
+           
+        </tr>
+      }
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <button type="submit"[routerLink]="['/imagen',]">REGRESAR</button><br>
+  <br>
+  
