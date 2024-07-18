@@ -31,19 +31,21 @@ export class ChatBootComponent {
   messages: { text?: string; user: boolean; urlImagen?: string; fechaHora?: string }[] = [];
   inputText: string = '';
   file: any;
-  response: any
+  response: any;
  imagen:any
 
-  openaiService: any;
-
-  constructor(private chatService: ChatServiceService, private servicio: ModeloService, openaiService: OpenaiService) {}
+  constructor(
+    private chatService: ChatServiceService,
+    private servicio: ModeloService,
+    private openaiService: OpenaiService
+  ) {}
 
   sendMessage(): void {
     if (this.inputText.trim() !== '') {
       const userMessage = { text: this.inputText, user: true, fechaHora: this.getCurrentDateTime() };
       this.messages.push(userMessage);
 
-      this.openaiService.sendMessage(this.inputText).subscribe((response: { choices: { message: { content: any; }; }[]; }) => {
+      this.openaiService.sendMessage(this.inputText).subscribe(response => {
         const botMessage = { text: response.choices[0].message.content, user: false, fechaHora: this.getCurrentDateTime() };
         this.messages.push(botMessage);
       });
@@ -55,12 +57,8 @@ export class ChatBootComponent {
       this.messages.push({ urlImagen: this.imagen, user: true, fechaHora: this.getCurrentDateTime() });
       this.imagen=undefined
     }
-    
   }
 
-  
-
-  
   onFileSelected(event: any) {
     this.file = event.target.files[0];
     if (this.file) {
