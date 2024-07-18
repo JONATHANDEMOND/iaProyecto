@@ -48,9 +48,12 @@ export class ChatBootComponent {
         this.messages.push(botMessage);
       });
 
-      this.inputText = '';
+      
     }
+    
   }
+
+  
 
   
   onFileSelected(event: any) {

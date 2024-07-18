@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <span>Chatbot</span>
 </mat-toolbar>
-
+<br>
 <div class="chat-container">
   <div class="chat-box">
     <div *ngFor="let message of messages">
@@ -9,7 +9,7 @@
         <ng-container *ngIf="message.text">
           <span>{{ message.text }}</span>
           <br>
-          <small>{{ message.fechaHora }}</small>
+          <small>{{ message.fechaHora }}</small>  
         </ng-container>
         <ng-container *ngIf="message.urlImagen">
           <img [src]="message.urlImagen" alt="Imagen subida" />
