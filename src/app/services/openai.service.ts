@@ -1,28 +1,22 @@
 // openai.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { from, Observable } from 'rxjs';
+import {OpenAI} from "openai";
 @Injectable({
   providedIn: 'root'
 })
 export class OpenaiService {
- private apiUrl = 'https://api.openai.com/v1/completions';
- private apiKey = 'sk-None-dbZEpWv7W1QbC0rwsE30T3BlbkFJOZPvYFT2JnjGLbYXLzSM';  
-
+  
+ 
   constructor(private http: HttpClient) { }
+  private API_OPENAI = "http://127.0.0.1:5000/asistente"
+  
 
-  sendMessage(message: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.apiKey}`
-    });
 
-    const body = {
-      model: 'gpt-3.5-turbo', 
-      messages: [{ role: 'user', content: message }]
-    };
-
-    return this.http.post(this.apiUrl, body, { headers });
+  askAsistant(mensaje:any):Observable<any>{
+    const requestData={mensaje:mensaje}
+    return this.http.post(this.API_OPENAI,requestData)
   }
+  
 }

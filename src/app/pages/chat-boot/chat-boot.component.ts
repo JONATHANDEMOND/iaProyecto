@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { ModeloService } from '../../services/modelo.service';
 import { OpenaiService } from '../../services/openai.service';
+import OpenAI from "openai";
 
 @Component({
   selector: 'app-chat-boot',
@@ -45,8 +46,8 @@ export class ChatBootComponent {
       const userMessage = { text: this.inputText, user: true, fechaHora: this.getCurrentDateTime() };
       this.messages.push(userMessage);
 
-      this.openaiService.sendMessage(this.inputText).subscribe(response => {
-        const botMessage = { text: response.choices[0].message.content, user: false, fechaHora: this.getCurrentDateTime() };
+      this.openaiService.askAsistant(this.inputText).subscribe(response => {
+        const botMessage = { text: response, user: false, fechaHora: this.getCurrentDateTime() };
         this.messages.push(botMessage);
       });
 
@@ -66,12 +67,12 @@ export class ChatBootComponent {
     if (this.file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        //this.messages.push({ urlImagen: e.target.result, user: true, fechaHora: this.getCurrentDateTime() });
+       
           this.imagen=e.target.result
       };
       reader.readAsDataURL(this.file);
     } else {
-      //this.messages.push({ text: 'No se seleccionó ningún archivo', user: true, fechaHora: this.getCurrentDateTime() });
+      
     }
   }
 
@@ -94,4 +95,20 @@ export class ChatBootComponent {
     const now = new Date();
     return now.toLocaleString();
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
