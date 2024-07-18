@@ -22,6 +22,9 @@
 
   <mat-form-field class="message-input">
     <input matInput placeholder="Escribe un mensaje..." [(ngModel)]="inputText" (keyup.enter)="sendMessage()">
+    <ng-container *ngIf="imagen">
+      <img [src]="imagen" alt="Imagen subida" width="250" height="250" />
+    </ng-container>
   </mat-form-field>
   <button mat-icon-button (click)="sendMessage()">
     <mat-icon>send</mat-icon>

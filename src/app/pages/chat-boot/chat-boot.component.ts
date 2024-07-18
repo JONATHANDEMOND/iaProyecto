@@ -32,7 +32,7 @@ export class ChatBootComponent {
   inputText: string = '';
   file: any;
   response: any
- 
+ imagen:any
 
   openaiService: any;
 
@@ -48,7 +48,12 @@ export class ChatBootComponent {
         this.messages.push(botMessage);
       });
 
-      
+      this.inputText='';
+    }
+
+    if(this.file){
+      this.messages.push({ urlImagen: this.imagen, user: true, fechaHora: this.getCurrentDateTime() });
+      this.imagen=undefined
     }
     
   }
@@ -61,7 +66,8 @@ export class ChatBootComponent {
     if (this.file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.messages.push({ urlImagen: e.target.result, user: true, fechaHora: this.getCurrentDateTime() });
+        //this.messages.push({ urlImagen: e.target.result, user: true, fechaHora: this.getCurrentDateTime() });
+          this.imagen=e.target.result
       };
       reader.readAsDataURL(this.file);
     } else {
