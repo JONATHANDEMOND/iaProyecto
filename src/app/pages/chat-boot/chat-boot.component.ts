@@ -53,9 +53,11 @@ export class ChatBootComponent {
       this.inputText='';
     }
 
-    if(this.file){
+    if(this.imagen){
       this.messages.push({ urlImagen: this.imagen, user: true, fechaHora: this.getCurrentDateTime() });
+      this.uploadImage()
       this.imagen=undefined
+      this.file=undefined
     }
   }
 
@@ -69,7 +71,7 @@ export class ChatBootComponent {
       };
       reader.readAsDataURL(this.file);
     } else {
-      this.messages.push({ text: 'No se seleccionó ningún archivo', user: true, fechaHora: this.getCurrentDateTime() });
+      //this.messages.push({ text: 'No se seleccionó ningún archivo', user: true, fechaHora: this.getCurrentDateTime() });
     }
   }
 
@@ -79,7 +81,9 @@ export class ChatBootComponent {
       formData.append('file', this.file);
       this.servicio.postModelo(formData).subscribe(p => {
         this.response = p;
-        console.log(this.response);
+        //console.log(this.response);
+        const message="La prediccion para la imagen es: "+p.prediction
+        this.messages.push({  text: message, user: false, fechaHora: this.getCurrentDateTime()});
       });
     } else {
       alert('Please select a file!');
