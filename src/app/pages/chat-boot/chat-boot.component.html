@@ -39,8 +39,10 @@
   <button mat-icon-button (click)="sendMessage()">
     <mat-icon>send</mat-icon>
   </button>
-
+  <label for="" style="color: aliceblue;">Imagen: </label>
   <input type="file" (change)="onFileSelected($event)">
+  <br>
+  <label for="" style="color: aliceblue;">Audio: </label>
   <input type="file" (change)="onAudioSelected($event)" accept="audio/*">
 
   <br>
