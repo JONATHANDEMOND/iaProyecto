@@ -10,13 +10,19 @@ export class OpenaiService {
   
  
   constructor(private http: HttpClient) { }
-  private API_OPENAI = "http://127.0.0.1:5000/asistente"
-  
+  private API_ASISTENTE = "http://127.0.0.1:5000/asistente"
+   private API_AUDIO = "http://127.0.0.1:5000/audioAssist"
 
 
   askAsistant(mensaje:any):Observable<any>{
     const requestData={mensaje:mensaje}
-    return this.http.post(this.API_OPENAI,requestData)
+    return this.http.post(this.API_ASISTENTE,requestData)
   }
+
+  uploadAudio(file:any):Observable<any>{
+    return this.http.post(this.API_AUDIO,file)
+  }
+
+
   
 }

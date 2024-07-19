@@ -16,6 +16,13 @@
           <br>
           <small>{{ message.fechaHora }}</small>
         </ng-container>
+        <ng-container *ngIf="message.audioUrl">
+          <audio  controls>
+            <source [src]="message.audioUrl" type="audio/mpeg">
+          </audio>
+          <br>
+          <small>{{ message.fechaHora }}</small>
+        </ng-container>
       </div>
     </div>
   </div>
@@ -25,12 +32,17 @@
     <ng-container *ngIf="imagen">
       <img [src]="imagen" alt="Imagen subida" width="250" height="250" />
     </ng-container>
+    <audio *ngIf="audioUrl" controls>
+      <source [src]="audioUrl" type="audio/mpeg">
+    </audio>
   </mat-form-field>
   <button mat-icon-button (click)="sendMessage()">
     <mat-icon>send</mat-icon>
   </button>
 
   <input type="file" (change)="onFileSelected($event)">
+  <input type="file" (change)="onAudioSelected($event)" accept="audio/*">
+
   <br>
   
   

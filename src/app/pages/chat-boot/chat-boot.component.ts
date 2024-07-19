@@ -29,12 +29,13 @@ import OpenAI from "openai";
   styleUrls: ['./chat-boot.component.css']
 })
 export class ChatBootComponent {
-  messages: { text?: string; user: boolean; urlImagen?: string; fechaHora?: string }[] = [];
+  messages: { text?: string; user: boolean; urlImagen?:  string; audioUrl?: string; fechaHora?: string;  }[] = [];
   inputText: string = '';
   file: any;
   response: any;
  imagen:any
-
+  audioFile: any
+  audioUrl:any
   constructor(
     private chatService: ChatServiceService,
     private servicio: ModeloService,
@@ -59,6 +60,13 @@ export class ChatBootComponent {
       this.uploadImage()
       this.imagen=undefined
       this.file=undefined
+    }
+
+    if(this.audioUrl){
+      this.messages.push({  user: true, audioUrl: this.audioUrl, fechaHora: this.getCurrentDateTime() });
+      this.uploadFileAudio()
+      this.audioUrl=undefined
+      this.audioFile=undefined
     }
   }
 
@@ -95,6 +103,39 @@ export class ChatBootComponent {
     const now = new Date();
     return now.toLocaleString();
   }
+///audio
+
+addAudioMessage(file: File) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    //
+    this.audioUrl = reader.result as string;
+    
+  };
+  reader.readAsDataURL(file);
+}
+
+onAudioSelected(event: any) {
+  this.audioFile = event.target.files[0];
+  if (this.audioFile) {
+    this.addAudioMessage(this.audioFile);
+  }
+}
+
+uploadFileAudio() {
+  if (this.audioFile) { 
+    const formData = new FormData();
+    formData.append('file', this.audioFile);
+    this.openaiService.uploadAudio(formData).subscribe(response => {
+      const message=response
+      this.messages.push({ text: message, user: false, fechaHora: this.getCurrentDateTime() });
+    });
+
+  } else {
+    alert('¡Por favor selecciona un archivo de audio!');
+  }
+}
+
 
 
 
